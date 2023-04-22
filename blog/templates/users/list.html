@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Nickname</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user_id in users %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('users.get_user', pk=user_id) }}">{{ users[user_id]["name"] }}</a>
+                </td>
+                <td>
+                    {{ users[user_id]["age"] }}
+                </td>
+                <td>
+                    {{ users[user_id]["nickname"] }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

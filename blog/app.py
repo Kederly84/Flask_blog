@@ -1,8 +1,13 @@
 from flask import Flask
+from blog.settings import VIEWS
 
-app = Flask(__name__)
+
+def create_app() -> Flask:
+    app = Flask(__name__)
+    register_blueprints(app)
+    return app
 
 
-@app.route("/")
-def index():
-    return "Hello World"
+def register_blueprints(app: Flask):
+    for view in VIEWS:
+        app.register_blueprint(view)
