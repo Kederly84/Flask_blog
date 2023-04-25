@@ -1,14 +1,14 @@
 from blog.users.views import users
 from blog.main.views import main
 from blog.articles.views import articles
-
-DEBUG = True
+from blog.auth.views import auth
+from flask_login import LoginManager
 
 VIEWS = [
     users,
     main,
-    articles
+    articles,
+    auth
 ]
 
-HOST = '0.0.0.0'
-PORT = 8080
+login_manager = LoginManager()

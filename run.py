@@ -1,10 +1,8 @@
+from pathlib import Path
 from blog.app import create_app
-from blog.settings import PORT, HOST, DEBUG
+
+BASE_DIR = config_path = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run(
-        host=HOST,
-        port=PORT,
-        debug=DEBUG
-    )
+    app = create_app(BASE_DIR)
+    app.run()
