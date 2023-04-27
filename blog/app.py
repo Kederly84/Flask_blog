@@ -1,9 +1,11 @@
 from flask import Flask
 
-from blog.settings import VIEWS, login_manager
+from blog.settings import VIEWS, login_manager, migrate
 from dotenv import load_dotenv
 from blog.models.auth.models import User
 from blog.database import db
+
+
 
 
 def create_app(config_path) -> Flask:
@@ -22,6 +24,7 @@ def register_blueprints(app: Flask):
 
 def register_components(app: Flask):
     db.init_app(app)
+    migrate.init_app(app, db, compare_type=True, render_as_batch=True)
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
