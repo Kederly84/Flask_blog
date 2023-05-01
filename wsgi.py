@@ -4,7 +4,7 @@ from pathlib import Path
 from werkzeug.security import generate_password_hash
 from blog.database import db
 from blog.app import create_app
-# from blog.models.auth.models import User
+
 
 BASE_DIR = config_path = Path(__file__).resolve().parent
 
@@ -19,7 +19,7 @@ def init_db():
 @app.cli.command("create-users", help="create users")
 def create_users():
     from blog.models.auth.models import User
-    user = User(email="django@django.com", password=generate_password_hash("django"))
+    user = User(email="django@django.com", password=generate_password_hash("django"), is_staff=True)
     db.session.add(
         user
     )
