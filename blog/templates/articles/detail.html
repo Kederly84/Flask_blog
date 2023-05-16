@@ -1,9 +1,9 @@
-{% extends "base.html" %}
-
-{% block body %}
-    <h1>{{ title }}</h1>
-    <br>
-    {{ text }}
-    <br>
-    {{ author["name"] }}
-{% endblock %}
+{% extends 'base.html' %}
+ {% block body %}
+   <h1>{{ article.title }}</h1>
+   <div>
+     <p>{{ article.body }}</p>
+     <div>Published {{ article.dt_created.strftime('%d-%m-%Y %H:%M:%S') }}</div>
+     <div>by {{ article.author.user.name }}</div>
+   </div>
+ {% endblock %}

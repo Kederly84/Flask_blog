@@ -2,19 +2,17 @@
 
 
 {% block body %}
-    <div class="row">
-        <div class="card-group">
+    <div>
+        <ul>
             {% for article in articles %}
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ articles[article]["title"] }}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ articles[article]["author_name"] }}</h6>
-                        <p class="card-text">{{ articles[article]["description"] }}</p>
-                        <a href="{{ url_for('articles.get_article', pk=article) }}" class="card-link">More</a>
-                    </div>
-                </div>
+                <li>
+                    <a href="{{ url_for('articles.details', article_id=article.id) }}">{{ article.title }}</a>
+                    by {{ article.author.user.name }}
+                </li>
             {% endfor %}
-        </div>
+        </ul>
+        <hr>
+        <a href="{{ url_for('articles.create') }}">Create new</a>
     </div>
 
 {% endblock %}

@@ -6,8 +6,6 @@ from blog.models.auth.models import User
 from blog.database import db
 
 
-
-
 def create_app(config_path) -> Flask:
     app = Flask(__name__)
     load_dotenv(config_path / ".env")
