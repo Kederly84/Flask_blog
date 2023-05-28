@@ -28,6 +28,9 @@ class Article(db.Model):
         back_populates="articles",
     )
 
+    def __str__(self):
+        return self.title
+
 
 class Tag(db.Model):
     id = Column(Integer, primary_key=True)
@@ -37,3 +40,6 @@ class Tag(db.Model):
         secondary=article_tag_association_table,
         back_populates="tags",
     )
+
+    def __str__(self):
+        return self.name

@@ -4,6 +4,7 @@ from blog.settings import VIEWS, login_manager, migrate
 from dotenv import load_dotenv
 from blog.models.auth.models import User
 from blog.database import db
+from blog.admin.view import admin
 
 
 def create_app(config_path) -> Flask:
@@ -25,6 +26,7 @@ def register_components(app: Flask):
     migrate.init_app(app, db, compare_type=True, render_as_batch=True)
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
+    admin.init_app(app)
 
     @login_manager.user_loader
     def load_user(user_id):
