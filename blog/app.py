@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from blog.models.auth.models import User
 from blog.database import db
 from blog.admin.view import admin
+from blog.api import init_api
 
 
 def create_app(config_path) -> Flask:
@@ -13,6 +14,7 @@ def create_app(config_path) -> Flask:
     app.config.from_prefixed_env()
     register_components(app)
     register_blueprints(app)
+    api = init_api(app)
     return app
 
 
