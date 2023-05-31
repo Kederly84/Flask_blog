@@ -1,9 +1,12 @@
-from flask_combo_jsonapi import Api
-from blog.api.tag import TagList, TagDetail
+from combojsonapi.event import EventPlugin
+from combojsonapi.permission import PermissionPlugin
 from combojsonapi.spec import ApiSpecPlugin
-from blog.api.users import UserList, UserDetail
-from blog.api.author import AuthorList, AuthorDetail
+from flask_combo_jsonapi import Api
+
 from blog.api.article import ArticleList, ArticleDetail
+from blog.api.author import AuthorList, AuthorDetail
+from blog.api.tag import TagList, TagDetail
+from blog.api.users import UserList, UserDetail
 
 
 def create_api_spec_plugin(app):
@@ -20,11 +23,15 @@ def create_api_spec_plugin(app):
 
 
 def init_api(app):
+    event_plugin = EventPlugin()
     api_spec_plugin = create_api_spec_plugin(app)
+    permission_plugin = PermissionPlugin(strict=False)
     api = Api(
         app,
         plugins=[
+            event_plugin,
             api_spec_plugin,
+            permission_plugin,
         ],
     )
     api.route(TagList, "tag_list", "/api/tags/", tag="Tag")
