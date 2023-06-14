@@ -15,14 +15,11 @@ itsdangerous==1.1.0
 Jinja2==3.1.2
 Mako==1.2.4
 MarkupSafe==2.1.2
-marshmallow==3.2.1
-marshmallow-jsonapi==0.24.0
-python-dotenv==1.0.0
+
 PyYAML==6.0
 simplejson==3.19.1
 SQLAlchemy==2.0.15
 typing_extensions==4.5.0
 Werkzeug==2.3.4
 WTForms==3.0.1
-ComboJSONAPI==1.0.5
-apispec==2.0.2
+
