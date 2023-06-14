@@ -1,10 +1,8 @@
-
 from pathlib import Path
 
 from werkzeug.security import generate_password_hash
 from blog.database import db
 from blog.app import create_app
-
 
 BASE_DIR = config_path = Path(__file__).resolve().parent
 
@@ -24,3 +22,19 @@ def create_users():
         user
     )
     db.session.commit()
+
+
+@app.cli.command("create-tags")
+def create_tags():
+    from blog.models import Tag
+    for name in [
+        "flask",
+        "django",
+        "python",
+        "sqlalchemy",
+        "news",
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print("created tags")

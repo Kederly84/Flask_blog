@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
- {% block body %}
-   <h1>{{ article.title }}</h1>
-   <div>
-     <p>{{ article.body }}</p>
-     <div>Published {{ article.dt_created.strftime('%d-%m-%Y %H:%M:%S') }}</div>
-     <div>by {{ article.author.user.name }}</div>
-   </div>
- {% endblock %}
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <div>
+        <p>{{ article.body }}</p>
+        <div>Published {{ article.dt_created.strftime('%d-%m-%Y %H:%M:%S') }}</div>
+        <div>by {{ article.author.user.name }}</div>
+    </div>
+    {% if article.tags %}
+        <div>Tags:</div>
+        <ul>
+            {% for tag in article.tags %}
+                <li>{{ tag.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

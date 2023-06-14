@@ -63,8 +63,8 @@ def register():
         user = User(
             email=form.email.data,
             is_staff=False,
+            password=generate_password_hash(form.password.data)
         )
-        user.password = generate_password_hash(form.password.data)
         db.session.add(user)
         try:
             db.session.commit()
